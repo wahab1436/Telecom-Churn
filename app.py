@@ -74,8 +74,12 @@ except Exception:
 # Constants
 # ──────────────────────────────────────────────────────────────────────────────
 
-DEFAULT_DATA_PATH = os.path.join("data", "telco_churn.csv")
-MODEL_DIR         = os.path.join("models")
+# Anchor all paths to the directory that contains app.py so the dashboard
+# works correctly regardless of the working directory from which
+# `streamlit run app.py` is invoked.
+APP_DIR           = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_DATA_PATH = os.path.join(APP_DIR, "data", "telco_churn.csv")
+MODEL_DIR         = os.path.join(APP_DIR, "models")
 os.makedirs(MODEL_DIR, exist_ok=True)
 
 NETWORK_LABELS = {0: "Low", 1: "Medium", 2: "High"}
